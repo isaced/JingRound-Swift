@@ -1,4 +1,6 @@
 JingRound-Swift
 ===============
 
-仿jing.fm的音乐播放视图，Swift练习版
+看大家都在玩 Swift ，我也来玩玩...
+
+本项目的OC版本：[https://github.com/isaced/JingRound](https://github.com/isaced/JingRound)
