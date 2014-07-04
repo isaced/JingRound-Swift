@@ -88,19 +88,20 @@ class JingRoundView: UIView {
         self.playStateView.center = center
         self.playStateView.image = stateImage
         self.addSubview(self.playStateView)
-        
+
         //border
         var colorSpace:CGColorSpaceRef = CGColorSpaceCreateDeviceRGB();
         let bitmapInfo = CGBitmapInfo.fromRaw(CGImageAlphaInfo.PremultipliedFirst.toRaw())!
         var context:CGContextRef = CGBitmapContextCreate(nil, UInt(self.frame.size.width), UInt(self.frame.size.height), UInt(8), UInt(0), colorSpace, bitmapInfo)
         CFRelease(colorSpace);
-        CGContextSetStrokeColorWithColor(context, UIColor.blackColor().CGColor);
+        CGContextSetStrokeColorWithColor(context, UIColor.whiteColor().colorWithAlphaComponent(0.7).CGColor);
         CGContextBeginPath(context);
         CGContextAddArc(context, center.x, center.y, center.x, 0, CGFloat(2 * M_PI), 0)
         CGContextClosePath(context);
         CGContextSetLineWidth(context, 15.0);
         CGContextStrokePath(context);
-        
+
+
         // convert the context into a CGImageRef
         var image:CGImageRef = CGBitmapContextCreateImage(context);
         CGContextRelease(context);
@@ -109,14 +110,12 @@ class JingRoundView: UIView {
         imgv.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
         imgv.image = image2;
         self.addSubview(imgv)
-        
+
         //Rotation
-        var rotationAnimation:CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
+        var rotationAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
         rotationAnimation.toValue = M_PI * 2.0
-        
-        //default RotationDuration value
         rotationAnimation.duration = self.rotationDuration;
-        rotationAnimation.repeatCount = FLT_MAX
+        rotationAnimation.repeatCount = HUGE
         rotationAnimation.cumulative = false;
         rotationAnimation.removedOnCompletion = false; //No Remove
         self.roundImageView.layer.addAnimation(rotationAnimation, forKey: "rotation")

@@ -18,8 +18,8 @@ class ViewController: UIViewController,JingRoundViewDelegate {
         
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background.jpg"))
         self.roundView.roundImage = UIImage(named: "girl")
-        self.roundView.delegate = self
         self.roundView.isPlay = false;
+        self.roundView.delegate = self
         
         
     }
