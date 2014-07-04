@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController,JingRoundViewDelegate {
                             
     @IBOutlet var roundView : JingRoundView
     
@@ -17,13 +17,20 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background.jpg"))
-//        self.roundView.roundImage = UIImage(named: "girl")
+        self.roundView.roundImage = UIImage(named: "girl")
+        self.roundView.delegate = self
+        self.roundView.isPlay = false;
+        
         
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func playStatuUpdate(playState: Bool) {
+        NSLog("%@...", playState ? "Playing": "Pause")
     }
 
 
